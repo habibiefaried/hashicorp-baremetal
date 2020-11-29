@@ -52,9 +52,13 @@ bind_addr = "$LOCAL_IP"
 log_level = "DEBUG"
 data_dir = "/etc/nomad"
 name = "$HOSTNAME"
-server {
+client {
   enabled = true
-  bootstrap_expect = $BOOTSTRAP_EXPECT
+  "options" = {
+      "docker.auth.config" = "/home/ec2-user/.docker/config.json"
+      "driver.raw_exec.enable" = "1"
+      "docker.privileged.enabled" = "true"
+    }
 }
 advertise {
   http = "$LOCAL_IP"

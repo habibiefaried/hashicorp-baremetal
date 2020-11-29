@@ -22,6 +22,11 @@ Hashicorp stack on baremetal deployment
 * Delete IP on bridge: `ip addr del <IP>/<subnet number> dev <bridge name>`
 * Delete bridge: `ovs-vsctl del-br <bridge name>`
 
+# HashiCorp Commands
+* List all members: `consul members -http-addr=http://<IP>:8500`
+* List all services (on server): `consul catalog services -http-addr=http://<IP>:8500`
+* List all nomad servers: `nomad server members -address=http://<IP>:4646`
+
 # Reference
 * https://docs.openvswitch.org/en/latest/tutorials/ipsec/
 

@@ -15,6 +15,11 @@ if [ -z "${BOOTSTRAP_EXPECT}" ]
   echo "Please set BOOTSTRAP_EXPECT env variable that will be used for config"
   exit
 fi
+if [ -z "${CONSUL_SERVER_IP}" ]
+  then
+  echo "Please set CONSUL_SERVER_IP env variable that will be used for config"
+  exit
+fi
 apt update && apt install curl unzip -y
 echo "Installing docker..."
 apt update
@@ -57,7 +62,7 @@ advertise {
   serf = "$LOCAL_IP"
 }
 consul {
-  address = "127.0.0.1:8500"
+  address = "$LOCAL_IP:8500"
   auto_advertise = true
 }
 EOF
@@ -94,7 +99,8 @@ cat > /etc/consul/config/client.json <<EOF
   "ui": true,
   "data_dir": "/etc/consul/data",
   "advertise_addr": "$LOCAL_IP",
-  "client_addr": "$LOCAL_IP"
+  "client_addr": "$LOCAL_IP",
+  "retry_join": ["$CONSUL_SERVER_IP"]
 }
 EOF
 cat > /etc/systemd/system/consul.service <<EOF

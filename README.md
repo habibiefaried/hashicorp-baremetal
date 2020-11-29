@@ -51,6 +51,8 @@ ip link set br-ipsec up
 ovs-vsctl set Open_vSwitch . other_config:ipsec_skb_mark=0/1
 ovs-vsctl add-port br-ipsec tun3-1
 ovs-vsctl set interface tun3-1 type=gre options:remote_ip=161.97.158.40 options:psk=swordF1sh
+ovs-vsctl add-port br-ipsec tun3-2
+ovs-vsctl set interface tun3-2 type=gre options:remote_ip=161.97.158.38 options:psk=swordF1sh
 ovs-vsctl set Interface br-ipsec cfm_mpid=1
 ```
 

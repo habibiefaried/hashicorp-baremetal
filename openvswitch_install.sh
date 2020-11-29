@@ -13,7 +13,7 @@ wget https://www.openvswitch.org/releases/openvswitch-$VERSION.tar.gz && tar -xv
 echo "Check and compiling..."
 dpkg-checkbuilddeps
 automake --add-missing
-DEB_BUILD_OPTIONS='parallel=8' fakeroot debian/rules binary
+DEB_BUILD_OPTIONS='parallel=8 nocheck' fakeroot debian/rules binary
 cd ..
 ls -lah | grep .deb
 # echo "Installing..."

@@ -10,11 +10,6 @@ if [ -z "${LOCAL_IP}" ]
   echo "Please set LOCAL_IP env variable that will be used for config"
   exit
 fi
-if [ -z "${BOOTSTRAP_EXPECT}" ]
-  then
-  echo "Please set BOOTSTRAP_EXPECT env variable that will be used for config"
-  exit
-fi
 if [ -z "${CONSUL_SERVER_IP}" ]
   then
   echo "Please set CONSUL_SERVER_IP env variable that will be used for config"

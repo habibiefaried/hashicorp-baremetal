@@ -10,8 +10,7 @@ Hashicorp stack on baremetal deployment
   *	161.97.158.38 with 192.168.1.2, for nomad server, with consul client
   *	161.97.158.37 with 192.168.1.3, for nomad client, with consul client
 * IPSec PSK: `swordF1sh`
-* OS: Ubuntu 16.04
-* Nomad: 1.0.0-beta3. Consul: 1.9.0
+* OS: Debian 10
 
 # OVS Setup for these 3 hosts
 

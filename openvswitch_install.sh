@@ -18,5 +18,6 @@ cd ..
 echo "Installing..."
 dpkg -i libopenvswitch_*.deb openvswitch-common_*.deb openvswitch-switch_*.deb openvswitch-datapath-dkms_*.deb python3-openvswitch_*.deb openvswitch-pki_*.deb openvswitch-ipsec_*.deb || true
 apt install -f -y
+rm -f /etc/strongswan.d/ovs.conf
 /usr/share/openvswitch/scripts/ovs-ctl start
 /usr/share/openvswitch/scripts/ovs-ctl status

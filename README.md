@@ -11,7 +11,7 @@ Hashicorp stack on baremetal deployment
   *	161.97.158.37 with 192.168.1.3, for nomad client, with consul client
 * IPSec PSK: `swordF1sh`
 * OS: Ubuntu 16.04
-* OpenVSwitch Version: 2.13.0. Nomad: 1.0.0-beta3. Consul: 1.9.0
+* Nomad: 1.0.0-beta3. Consul: 1.9.0
 
 # OVS Setup for these 3 hosts
 
@@ -25,6 +25,7 @@ ovs-vsctl add-port br-ipsec tun1-2
 ovs-vsctl set interface tun1-2 type=gre options:remote_ip=161.97.158.38 options:psk=swordF1sh
 ovs-vsctl add-port br-ipsec tun1-3
 ovs-vsctl set interface tun1-3 type=gre options:remote_ip=161.97.158.37 options:psk=swordF1sh
+ovs-vsctl set interface br-ipsec cfm_mpid=1
 ```
 
 On IP 161.97.158.38
@@ -37,6 +38,7 @@ ovs-vsctl add-port br-ipsec tun2-1
 ovs-vsctl set interface tun2-1 type=gre options:remote_ip=161.97.158.40 options:psk=swordF1sh
 ovs-vsctl add-port br-ipsec tun2-3
 ovs-vsctl set interface tun2-3 type=gre options:remote_ip=161.97.158.37 options:psk=swordF1sh
+ovs-vsctl set Interface br-ipsec cfm_mpid=1
 ```
 
 On IP 161.97.158.37
@@ -47,6 +49,7 @@ ip addr add 192.168.1.3/24 dev br-ipsec
 ip link set br-ipsec up
 ovs-vsctl add-port br-ipsec tun3-1
 ovs-vsctl set interface tun3-1 type=gre options:remote_ip=161.97.158.40 options:psk=swordF1sh
+ovs-vsctl set Interface br-ipsec cfm_mpid=1
 ```
 
 # OpenVSwitch Commands
@@ -58,10 +61,11 @@ ovs-vsctl set interface tun3-1 type=gre options:remote_ip=161.97.158.40 options:
 * Delete port: ` ovs-vsctl del-port <bridge name> <port name>`
 * List ports on bridge: `ovs-vsctl list-ports <bridge name>`
 * Set interface for IPSec: `ovs-vsctl set interface <port name> type=gre options:remote_ip=<REMOTE IP> options:psk=<PASSWORD>`
-* OVS status: `/usr/share/openvswitch/scripts/ovs-ctl status`
-* IPSec tunnel status: `ovs-appctl -t ovs-monitor-ipsec tunnels/show`
+* Tunnel related: https://www.openvswitch.org/support/dist-docs-2.5/README-native-tunneling.md.html
 * Delete IP on bridge: `ip addr del <IP>/<subnet number> dev <bridge name>`
 * Delete bridge: `ovs-vsctl del-br <bridge name>`
+* Status OVS: `service openvswitch-switch status`
+* Status OVS-IPSec: `service openvswitch-ipsec status`
 
 # HashiCorp Commands
 

@@ -94,7 +94,7 @@ cat > /etc/consul/config/client.json <<EOF
   "ui": true,
   "data_dir": "/etc/consul/data",
   "advertise_addr": "$LOCAL_IP",
-  "client_addr": "$LOCAL_IP",
+  "client_addr": "$LOCAL_IP"
 }
 EOF
 cat > /etc/systemd/system/consul.service <<EOF

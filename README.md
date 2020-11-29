@@ -3,7 +3,10 @@ Hashicorp stack on baremetal deployment
 
 # Spec
 * 3 VPS S SSD servers on contabo.com (public IP only)
-* We are using 192.168.1.0/24 for our private networking. 1.1, 1.2, 1.3 is being used for each of those hosts respectively.
+* We are using 192.168.1.0/24 for our private networking. With mapping:
+  * 161.97.158.40 with 192.168.1.1
+  *	161.97.158.38 with 192.168.1.2
+  *	161.97.158.37 with 192.168.1.3
 * IPSec PSK: `swordF1sh`
 
 # OpenVSwitch Commands
@@ -21,3 +24,6 @@ Hashicorp stack on baremetal deployment
 
 # Reference
 * https://docs.openvswitch.org/en/latest/tutorials/ipsec/
+
+# Notes
+Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.

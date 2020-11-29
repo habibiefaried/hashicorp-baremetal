@@ -20,6 +20,8 @@ dpkg -i libopenvswitch_*.deb openvswitch-common_*.deb openvswitch-switch_*.deb o
 apt install -f -y
 rm -f /etc/strongswan.d/ovs.conf
 systemctl enable strongswan
+systemctl enable openvswitch-switch
+systemctl enable openvswitch-ipsec
 service strongswan restart
-/usr/share/openvswitch/scripts/ovs-ctl start
-/usr/share/openvswitch/scripts/ovs-ctl status
+systemctl restart openvswitch-switch
+systemctl restart openvswitch-ipsec

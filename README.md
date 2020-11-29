@@ -8,6 +8,7 @@ Hashicorp stack on baremetal deployment
   *	161.97.158.38 with 192.168.1.2, for nomad server, with consul client
   *	161.97.158.37 with 192.168.1.3, for nomad client, with consul client
 * IPSec PSK: `swordF1sh`
+* OS: Ubuntu 16.04
 
 # OpenVSwitch Commands
 * Add bridge: `ovs-vsctl add-br <bridge name>`

@@ -22,4 +22,4 @@ dpkg -i *.deb || true
 apt install -f -y
 /usr/share/openvswitch/scripts/ovs-ctl start
 /usr/share/openvswitch/scripts/ovs-ctl status
-sysctl -w net.ipv4.ip_forward=1 # Make this permanent by edit /etc/sysctl.conf
+sysctl -w net.ipv4.ip_forward=1 # Make this permanent by editing /etc/sysctl.conf

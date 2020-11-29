@@ -82,4 +82,5 @@ ovs-vsctl set Interface br-ipsec cfm_mpid=1
 
 # Notes
 
-Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
+1. Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
+2. Project is stopped, openvswitch ipsec cannot work when pulling http.

@@ -15,6 +15,7 @@ if [ -z "${BOOTSTRAP_EXPECT}" ]
   echo "Please set BOOTSTRAP_EXPECT env variable that will be used for config"
   exit
 fi
+apt update && apt install curl unzip -y
 echo "Installing docker..."
 apt update
 apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
@@ -60,7 +61,7 @@ consul {
   auto_advertise = true
 }
 EOF
-sudo bash -c 'cat > /etc/systemd/system/nomad.service <<EOF
+cat > /etc/systemd/system/nomad.service <<EOF
 [Unit]
 Description=Nomad
 Requires=network-online.target
@@ -74,16 +75,16 @@ KillSignal=SIGTERM
 
 [Install]
 WantedBy=multi-user.target
-EOF'
+EOF
 sudo systemctl enable nomad
 sudo systemctl start nomad
 echo "Installing Dnsmasq..."
 sudo apt install dnsmasq -y
 echo "Configuring Dnsmasq..."
-sudo bash -c 'echo "server=/consul/127.0.0.1#8600" >> /etc/dnsmasq.d/consul'
-sudo bash -c 'echo "listen-address=$LOCAL_IP" >> /etc/dnsmasq.d/consul'
-sudo bash -c 'echo "bind-interfaces" >> /etc/dnsmasq.d/consul'
-sudo bash -c 'echo "conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig" > /etc/dnsmasq.conf'
+echo "server=/consul/127.0.0.1#8600" >> /etc/dnsmasq.d/consul
+echo "listen-address=$LOCAL_IP" >> /etc/dnsmasq.d/consul
+echo "bind-interfaces" >> /etc/dnsmasq.d/consul
+echo "conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig" > /etc/dnsmasq.conf
 echo "Restarting dnsmasq..."
 sudo systemctl enable dnsmasq
 sudo service dnsmasq restart
@@ -92,10 +93,11 @@ cat > /etc/consul/config/client.json <<EOF
   "server": false,
   "ui": true,
   "data_dir": "/etc/consul/data",
-  "advertise_addr": "$LOCAL_IP"
+  "advertise_addr": "$LOCAL_IP",
+  "client_addr": "$LOCAL_IP",
 }
 EOF
-sudo bash -c 'cat > /etc/systemd/system/consul.service <<EOF
+cat > /etc/systemd/system/consul.service <<EOF
 [Unit]
 Description=Consul
 Requires=network-online.target
@@ -111,6 +113,6 @@ StartLimitBurst=5
 
 [Install]
 WantedBy=multi-user.target
-EOF'
+EOF
 sudo systemctl enable consul
 sudo systemctl start consul

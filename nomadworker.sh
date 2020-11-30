@@ -107,6 +107,14 @@ cat > /etc/consul/config/client.json <<EOF
   "retry_join": ["$CONSUL_SERVER_IP"]
 }
 EOF
+cat > /etc/consul/config/connect.hcl <<EOF
+connect {
+  enabled = true
+}
+ports {
+  grpc = 8502
+}
+EOF
 cat > /etc/systemd/system/consul.service <<EOF
 [Unit]
 Description=Consul

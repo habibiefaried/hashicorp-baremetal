@@ -50,6 +50,9 @@ cat > /etc/consul/config/connect.hcl <<EOF
 connect {
   enabled = true
 }
+ports {
+  grpc = 8502
+}
 EOF
 cat > /etc/systemd/system/consul.service <<EOF
 [Unit]

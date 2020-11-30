@@ -27,8 +27,10 @@ Hashicorp stack on baremetal deployment
 
 # Notes
 
-* Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
-* set `net.ipv4.ip_forward = 1` on all hosts
-* BUG: I have to stop the job, before run the updated job. Otherwise, reserved_port error
-* BUG Ubuntu OpenVPN: Install, purge, and then install again.
 * Need to stop `systemd-resolved.service`, add `8.8.8.8` on resolv.conf after that
+* set `net.ipv4.ip_forward = 1` on all hosts
+* BUG Ubuntu OpenVPN: Install, purge, and then install again.
+* Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
+
+# Conclusion
+This setup really works well in Ubuntu 20.04, with openvpn above the cluster

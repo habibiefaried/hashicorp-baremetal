@@ -55,8 +55,6 @@ EOF
         memory = 128
 
         network {
-          mbits = 10
-
           port "http" {
             static = 80
           }

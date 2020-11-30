@@ -53,9 +53,11 @@ name = "$HOSTNAME"
 client {
   enabled = true
   "options" = {
-      "driver.raw_exec.enable" = "1"
-      "docker.privileged.enabled" = "true"
-    }
+    "driver.raw_exec.enable" = "1"
+    "docker.privileged.enabled" = "true"
+  }
+  network_interface = "tun0"
+  network_speed = 1000
 }
 advertise {
   http = "$LOCAL_IP"

@@ -23,6 +23,9 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" -y
 apt update
 apt install docker-ce docker-ce-cli containerd.io -y
+echo '{ "dns" : [ "172.17.0.1" , "172.31.0.2" ] }'  > /etc/docker/daemon.json
+systemctl enable docker
+service docker reload
 docker run hello-world
 echo "Installing Nomad..."
 cd /tmp/

@@ -31,7 +31,7 @@ job "traefik" {
   storage = "acme.json"
   [certificatesResolvers.myresolver.acme.httpChallenge]
     # used during the challenge
-    entryPoint = "web"
+    entryPoint = "http"
 
 [api]
     dashboard = true
@@ -43,7 +43,7 @@ job "traefik" {
     exposedByDefault = false
 
     [providers.consulCatalog.endpoint]
-      address = "127.0.0.1:8500"
+      address = "consul.service.consul:8500"
       scheme  = "http"
 EOF
 

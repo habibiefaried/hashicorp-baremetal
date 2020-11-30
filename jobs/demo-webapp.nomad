@@ -27,11 +27,11 @@ job "demo-webapp" {
 
         tags = [
           "traefik.enable=true",
-          "traefik.http.routers.demowebapp.rule=Host(`test.nomad.habibiefaried.com`)",
+          "traefik.http.routers.demowebapp.rule=Host(`demo-webapp.nomad.habibiefaried.com`)",
           "traefik.http.routers.demowebapp.tls=true",
-          "traefik.http.routers.blog.tls.certresolver=myresolver",
-          "traefik.http.routers.blog.tls.domains[0].main=test.nomad.habibiefaried.com",
-          "traefik.http.routers.blog.tls.domains[0].sans=*.nomad.habibiefaried.com",
+          "traefik.http.routers.demowebapp.tls.certresolver=myresolver",
+          "traefik.http.routers.demowebapp.entrypoints=http,websecure",
+          "traefik.http.routers.demowebapp.tls.domains[0].main=demo-webapp.nomad.habibiefaried.com",
         ]
 
         check {

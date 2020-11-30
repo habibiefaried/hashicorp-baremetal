@@ -29,7 +29,7 @@ HOSTNAME=`hostname`
 echo "Installing Dnsmasq..."
 apt install dnsmasq -y
 echo "Configuring Dnsmasq..."
-echo "server=/consul/127.0.0.1#8600" >> /etc/dnsmasq.d/consul
+echo "server=/consul/$LOCAL_IP#8600" >> /etc/dnsmasq.d/consul
 echo "server=8.8.8.8" >> /etc/dnsmasq.d/consul
 echo "listen-address=0.0.0.0" >> /etc/dnsmasq.d/consul
 echo "bind-interfaces" >> /etc/dnsmasq.d/consul

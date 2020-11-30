@@ -9,7 +9,7 @@ Hashicorp stack on baremetal deployment
   * 161.97.158.40 with 10.8.0.3, for nomad client, with consul client
   *	161.97.158.38 with 10.8.0.2, for nomad server, with consul client
   *	161.97.158.37 with 10.8.0.1, for consul server only with OpenVPN server
-* OS: Debian 10
+* OS: Ubuntu 20.04
 
 # HashiCorp Commands
 
@@ -28,5 +28,7 @@ Hashicorp stack on baremetal deployment
 # Notes
 
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
-* set `net.ipv4.ip_forward = 1`
+* set `net.ipv4.ip_forward = 1` on all hosts
 * BUG: I have to stop the job, before run the updated job. Otherwise, reserved_port error
+* BUG Ubuntu OpenVPN: Install, purge, and then install again.
+* Need to stop `systemd-resolved.service`, add `8.8.8.8` on resolv.conf after that

@@ -46,6 +46,11 @@ cat > /etc/consul/config/server.json <<EOF
   "bootstrap_expect": $BOOTSTRAP_EXPECT
 }
 EOF
+cat > /etc/consul/config/connect.hcl <<EOF
+connect {
+  enabled = true
+}
+EOF
 cat > /etc/systemd/system/consul.service <<EOF
 [Unit]
 Description=Consul

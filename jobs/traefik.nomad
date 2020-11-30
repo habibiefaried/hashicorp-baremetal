@@ -43,7 +43,7 @@ job "traefik" {
     exposedByDefault = false
 
     [providers.consulCatalog.endpoint]
-      address = "consul.service.consul:8500"
+      address = "10.8.0.1:8500"
       scheme  = "http"
 EOF
 

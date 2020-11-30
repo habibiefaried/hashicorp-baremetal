@@ -17,11 +17,13 @@ Hashicorp stack on baremetal deployment
 * List all services (on server): `consul catalog services -http-addr=http://<IP>:8500`
 * List all nomad servers: `nomad server members -address=http://<IP>:4646`
 
-# Reference
+# OpenVPN Reference
 
 * Using this one: https://github.com/angristan/openvpn-install
 * Open file `/etc/openvpn/server.conf` and comment `redirect-gateway def1 bypass-dhcp`. Restart the openvpn
 * Issue the command `echo "ifconfig-push 10.8.0.50 255.255.255.0" > /etc/openvpn/ccd/user03` if you want `user03` having static IP `10.8.0.50`
+* Copy the client.ovpn to /etc/openvpn and rename if to client.conf on ovpn client nodes.
+* `systemctl enable openvpn@client.service` and `service openvpn@client start` to start that ovpn on client nodes.
 
 # Notes
 

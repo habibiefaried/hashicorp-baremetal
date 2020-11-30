@@ -53,7 +53,6 @@ name = "$HOSTNAME"
 client {
   enabled = true
   "options" = {
-      "docker.auth.config" = "/home/ec2-user/.docker/config.json"
       "driver.raw_exec.enable" = "1"
       "docker.privileged.enabled" = "true"
     }

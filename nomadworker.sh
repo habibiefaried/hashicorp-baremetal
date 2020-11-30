@@ -31,19 +31,19 @@ echo "Installing Nomad..."
 cd /tmp/
 curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
 unzip nomad.zip
-sudo install nomad /usr/bin/nomad
-sudo mkdir -p /etc/nomad/config
-sudo chmod -R a+w /etc/nomad
+install nomad /usr/bin/nomad
+mkdir -p /etc/nomad/config
+chmod -R a+w /etc/nomad
 echo "Installing Consul..."
 curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > /tmp/consul.zip
 unzip /tmp/consul.zip
-sudo install consul /usr/bin/consul
-sudo mkdir -p /etc/consul
-sudo chmod a+w /etc/consul
-sudo mkdir -p /etc/consul/data
-sudo chmod a+w /etc/consul/data
-sudo mkdir -p /etc/consul/config
-sudo chmod a+w /etc/consul/config
+install consul /usr/bin/consul
+mkdir -p /etc/consul
+chmod a+w /etc/consul
+mkdir -p /etc/consul/data
+chmod a+w /etc/consul/data
+mkdir -p /etc/consul/config
+chmod a+w /etc/consul/config
 HOSTNAME=`hostname`
 cat > /etc/nomad/config/server.hcl <<EOF
 bind_addr = "$LOCAL_IP"
@@ -85,18 +85,19 @@ KillSignal=SIGTERM
 [Install]
 WantedBy=multi-user.target
 EOF
-sudo systemctl enable nomad
-sudo systemctl start nomad
+systemctl enable nomad
+systemctl start nomad
 echo "Installing Dnsmasq..."
-sudo apt install dnsmasq -y
+apt install dnsmasq -y
 echo "Configuring Dnsmasq..."
 echo "server=/consul/127.0.0.1#8600" >> /etc/dnsmasq.d/consul
+echo "server=8.8.8.8" >> /etc/dnsmasq.d/consul
 echo "listen-address=$LOCAL_IP" >> /etc/dnsmasq.d/consul
 echo "bind-interfaces" >> /etc/dnsmasq.d/consul
 echo "conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig" > /etc/dnsmasq.conf
 echo "Restarting dnsmasq..."
-sudo systemctl enable dnsmasq
-sudo service dnsmasq restart
+systemctl enable dnsmasq
+service dnsmasq restart
 cat > /etc/consul/config/client.json <<EOF
 {
   "server": false,
@@ -132,5 +133,5 @@ StartLimitBurst=5
 [Install]
 WantedBy=multi-user.target
 EOF
-sudo systemctl enable consul
-sudo systemctl start consul
+systemctl enable consul
+systemctl start consul

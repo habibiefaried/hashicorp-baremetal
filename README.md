@@ -22,7 +22,7 @@ Hashicorp stack on baremetal deployment
 * Using this one: https://github.com/angristan/openvpn-install
 * Open file `/etc/openvpn/server.conf` and comment `redirect-gateway def1 bypass-dhcp`. Restart the openvpn
 * Issue the command `echo "ifconfig-push 10.8.0.50 255.255.255.0" > /etc/openvpn/ccd/user03` if you want `user03` having static IP `10.8.0.50`
-* Copy the client.ovpn to /etc/openvpn and rename if to client.conf on ovpn client nodes.
+* Copy the `.ovpn` to `/etc/openvpn` and rename it to `client.conf` on ovpn client nodes.
 * `systemctl enable openvpn@client.service` and `service openvpn@client start` to start that ovpn on client nodes.
 
 # Notes

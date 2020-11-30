@@ -30,6 +30,7 @@ echo "Installing Dnsmasq..."
 apt install dnsmasq -y
 echo "Configuring Dnsmasq..."
 echo "server=/consul/127.0.0.1#8600" >> /etc/dnsmasq.d/consul
+echo "server=8.8.8.8" >> /etc/dnsmasq.d/consul
 echo "listen-address=$LOCAL_IP" >> /etc/dnsmasq.d/consul
 echo "bind-interfaces" >> /etc/dnsmasq.d/consul
 echo "conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig" > /etc/dnsmasq.conf

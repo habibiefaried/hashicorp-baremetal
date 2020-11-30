@@ -29,3 +29,4 @@ Hashicorp stack on baremetal deployment
 
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
 * set `net.ipv4.ip_forward = 1`
+* BUG: I have to stop the job, before run the updated job. Otherwise, reserved_port error

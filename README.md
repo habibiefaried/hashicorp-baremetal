@@ -11,6 +11,7 @@ Hashicorp stack on baremetal deployment
   *	161.97.158.37 with 192.168.1.3, for consul server only
 * IPSec PSK: `swordF1sh`
 * OS: Debian 10
+* OVS Version: master on commit fa57e9e45257f32b80c135c18ae821ac3c43a738
 
 # OVS Setup for these 3 hosts
 
@@ -20,12 +21,10 @@ On IP 161.97.158.40
 ovs-vsctl add-br br-ipsec 
 ip addr add 192.168.1.1/24 dev br-ipsec
 ip link set br-ipsec up
-ovs-vsctl set Open_vSwitch . other_config:ipsec_skb_mark=0/1
 ovs-vsctl add-port br-ipsec tun1-2
 ovs-vsctl set interface tun1-2 type=gre options:remote_ip=161.97.158.38 options:psk=swordF1sh
 ovs-vsctl add-port br-ipsec tun1-3
 ovs-vsctl set interface tun1-3 type=gre options:remote_ip=161.97.158.37 options:psk=swordF1sh
-ovs-vsctl set interface br-ipsec cfm_mpid=1
 ```
 
 On IP 161.97.158.38
@@ -34,12 +33,8 @@ On IP 161.97.158.38
 ovs-vsctl add-br br-ipsec 
 ip addr add 192.168.1.2/24 dev br-ipsec
 ip link set br-ipsec up
-ovs-vsctl set Open_vSwitch . other_config:ipsec_skb_mark=0/1
 ovs-vsctl add-port br-ipsec tun2-1
 ovs-vsctl set interface tun2-1 type=gre options:remote_ip=161.97.158.40 options:psk=swordF1sh
-ovs-vsctl add-port br-ipsec tun2-3
-ovs-vsctl set interface tun2-3 type=gre options:remote_ip=161.97.158.37 options:psk=swordF1sh
-ovs-vsctl set Interface br-ipsec cfm_mpid=1
 ```
 
 On IP 161.97.158.37
@@ -48,12 +43,8 @@ On IP 161.97.158.37
 ovs-vsctl add-br br-ipsec 
 ip addr add 192.168.1.3/24 dev br-ipsec
 ip link set br-ipsec up
-ovs-vsctl set Open_vSwitch . other_config:ipsec_skb_mark=0/1
 ovs-vsctl add-port br-ipsec tun3-1
 ovs-vsctl set interface tun3-1 type=gre options:remote_ip=161.97.158.40 options:psk=swordF1sh
-ovs-vsctl add-port br-ipsec tun3-2
-ovs-vsctl set interface tun3-2 type=gre options:remote_ip=161.97.158.38 options:psk=swordF1sh
-ovs-vsctl set Interface br-ipsec cfm_mpid=1
 ```
 
 # OpenVSwitch Commands
@@ -84,3 +75,4 @@ ovs-vsctl set Interface br-ipsec cfm_mpid=1
 
 1. Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
 2. BUG: openvswitch ipsec cannot work when doing http GET request.
+3. You cannot use any other topology expect STAR (all of those are connected to centralized machine, in this case, IP `161.97.158.40`)

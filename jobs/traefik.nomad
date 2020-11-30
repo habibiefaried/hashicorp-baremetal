@@ -61,6 +61,10 @@ EOF
             static = 80
           }
 
+          port "https" {
+            static = 443
+          }
+
           port "api" {
             static = 8081
           }

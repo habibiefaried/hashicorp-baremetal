@@ -45,7 +45,7 @@ chmod a+w /etc/consul/data
 mkdir -p /etc/consul/config
 chmod a+w /etc/consul/config
 HOSTNAME=`hostname`
-cat > /etc/nomad/config/server.hcl <<EOF
+cat > /etc/nomad/config/worker.hcl <<EOF
 bind_addr = "$LOCAL_IP"
 log_level = "DEBUG"
 data_dir = "/etc/nomad"
@@ -77,6 +77,8 @@ After=network-online.target
 
 [Service]
 Restart=on-failure
+StandardOutput=append:/var/log/nomad.log
+StandardError=append:/var/log/nomad.err
 ExecStart=/usr/bin/nomad agent -config=/etc/nomad/config
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGTERM
@@ -123,6 +125,8 @@ After=network-online.target
 
 [Service]
 Restart=on-failure
+StandardOutput=append:/var/log/consul.log
+StandardError=append:/var/log/consul.err
 ExecStart=/usr/bin/consul agent -config-dir=/etc/consul/config
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGTERM

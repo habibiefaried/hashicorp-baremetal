@@ -106,7 +106,10 @@ cat > /etc/consul/config/client.json <<EOF
   "data_dir": "/etc/consul/data",
   "advertise_addr": "$LOCAL_IP",
   "client_addr": "0.0.0.0",
-  "retry_join": ["$CONSUL_SERVER_IP"]
+  "retry_join": ["$CONSUL_SERVER_IP"],
+  "encrypt": "cAHKGeNe8gg7ZsGoVmipacM7LS0gsoCcbvrXqY9ynhI=",
+  "encrypt_verify_incoming": true,
+  "encrypt_verify_outgoing": true
 }
 EOF
 cat > /etc/consul/config/connect.hcl <<EOF

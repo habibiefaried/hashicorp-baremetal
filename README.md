@@ -20,3 +20,4 @@ Hashicorp stack on baremetal deployment
 # Notes
 
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
+* Generate key for nomad and consul: `openssl rand -base64 32`

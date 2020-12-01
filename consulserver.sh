@@ -40,9 +40,7 @@ cat > /etc/consul/config/server.json <<EOF
   "advertise_addr": "$LOCAL_IP",
   "client_addr": "0.0.0.0",
   "bootstrap_expect": 1,
-  "encrypt": "cAHKGeNe8gg7ZsGoVmipacM7LS0gsoCcbvrXqY9ynhI=",
-  "encrypt_verify_incoming": true,
-  "encrypt_verify_outgoing": true
+  "raft_protocol": 3
 }
 EOF
 cat > /etc/consul/config/connect.hcl <<EOF

@@ -1,5 +1,5 @@
 #!/bin/bash
-NOMAD_VERSION=1.0.0-beta3
+NOMAD_VERSION=0.12.9
 CONSUL_VERSION=1.9.0
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
@@ -42,7 +42,7 @@ name = "$HOSTNAME"
 server {
   enabled = true
   bootstrap_expect = 1
-  encrypt = "cAHKGeNe8gg7ZsGoVmipacM7LS0gsoCcbvrXqY9ynhI="
+  raft_protocol = 3
 }
 advertise {
   http = "$LOCAL_IP"
@@ -54,6 +54,15 @@ consul {
   auto_advertise = true
   server_auto_join = true
   client_auto_join = true
+}
+autopilot {
+  cleanup_dead_servers      = true
+  last_contact_threshold    = "200ms"
+  max_trailing_logs         = 2500
+  server_stabilization_time = "10s"
+  enable_redundancy_zones   = false
+  disable_upgrade_migration = false
+  enable_custom_upgrades    = false
 }
 EOF
 cat > /etc/systemd/system/nomad.service <<EOF
@@ -93,10 +102,7 @@ cat > /etc/consul/config/client.json <<EOF
   "data_dir": "/etc/consul/data",
   "advertise_addr": "$LOCAL_IP",
   "client_addr": "0.0.0.0",
-  "retry_join": ["$CONSUL_SERVER_IP"],
-  "encrypt": "cAHKGeNe8gg7ZsGoVmipacM7LS0gsoCcbvrXqY9ynhI=",
-  "encrypt_verify_incoming": true,
-  "encrypt_verify_outgoing": true
+  "retry_join": ["$CONSUL_SERVER_IP"]
 }
 EOF
 cat > /etc/consul/config/connect.hcl <<EOF

@@ -22,3 +22,4 @@ Hashicorp stack on baremetal deployment
 
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
 * Generate key for nomad and consul: `openssl rand -base64 32`. On this script, change every key on `encrypt` section of config
+* WARNING: Cannot run job when `encrypt` is set

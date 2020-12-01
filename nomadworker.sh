@@ -63,7 +63,7 @@ advertise {
   serf = "$LOCAL_IP"
 }
 consul {
-  address = "$LOCAL_IP:8500"
+  address = "127.0.0.1:8500"
   auto_advertise = true
   server_auto_join = true
   client_auto_join = true
@@ -105,7 +105,7 @@ cat > /etc/consul/config/client.json <<EOF
   "ui": true,
   "data_dir": "/etc/consul/data",
   "advertise_addr": "$LOCAL_IP",
-  "client_addr": "$LOCAL_IP",
+  "client_addr": "0.0.0.0",
   "retry_join": ["$CONSUL_SERVER_IP"]
 }
 EOF

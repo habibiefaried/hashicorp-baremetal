@@ -10,11 +10,6 @@ if [ -z "${LOCAL_IP}" ]
   echo "Please set LOCAL_IP env variable that will be used for config"
   exit
 fi
-if [ -z "${BOOTSTRAP_EXPECT}" ]
-  then
-  echo "Please set BOOTSTRAP_EXPECT env variable that will be used for config"
-  exit
-fi
 if [ -z "${CONSUL_SERVER_IP}" ]
   then
   echo "Please set CONSUL_SERVER_IP env variable that will be used for config"
@@ -40,13 +35,13 @@ mkdir -p /etc/consul/config
 chmod a+w /etc/consul/config
 HOSTNAME=`hostname`
 cat > /etc/nomad/config/server.hcl <<EOF
-bind_addr = "$LOCAL_IP"
+bind_addr = "0.0.0.0"
 log_level = "DEBUG"
 data_dir = "/etc/nomad"
 name = "$HOSTNAME"
 server {
   enabled = true
-  bootstrap_expect = $BOOTSTRAP_EXPECT
+  bootstrap_expect = 1
 }
 advertise {
   http = "$LOCAL_IP"
@@ -54,7 +49,7 @@ advertise {
   serf = "$LOCAL_IP"
 }
 consul {
-  address = "$LOCAL_IP:8500"
+  address = "127.0.0.1:8500"
   auto_advertise = true
   server_auto_join = true
   client_auto_join = true
@@ -96,7 +91,7 @@ cat > /etc/consul/config/client.json <<EOF
   "ui": true,
   "data_dir": "/etc/consul/data",
   "advertise_addr": "$LOCAL_IP",
-  "client_addr": "$LOCAL_IP",
+  "client_addr": "0.0.0.0",
   "retry_join": ["$CONSUL_SERVER_IP"]
 }
 EOF

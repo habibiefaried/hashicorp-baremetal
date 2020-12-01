@@ -9,11 +9,6 @@ if [ -z "${LOCAL_IP}" ]
   echo "Please set LOCAL_IP env variable that will be used for config"
   exit
 fi
-if [ -z "${BOOTSTRAP_EXPECT}" ]
-  then
-  echo "Please set BOOTSTRAP_EXPECT env variable that will be used for config"
-  exit
-fi
 apt update && apt install curl unzip -y
 echo "Installing Consul..."
 curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > /tmp/consul.zip
@@ -43,8 +38,8 @@ cat > /etc/consul/config/server.json <<EOF
   "ui": true,
   "data_dir": "/opt/consul/data",
   "advertise_addr": "$LOCAL_IP",
-  "client_addr": "$LOCAL_IP",
-  "bootstrap_expect": $BOOTSTRAP_EXPECT
+  "client_addr": "0.0.0.0",
+  "bootstrap_expect": 1
 }
 EOF
 cat > /etc/consul/config/connect.hcl <<EOF

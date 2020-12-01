@@ -29,7 +29,9 @@ Hashicorp stack on baremetal deployment
 
 # Nomad TLS
 
-Follow this steps: https://learn.hashicorp.com/tutorials/nomad/security-enable-tls. Certificate example (Do not use it) on `nomadtls` directory. See my `cfssl.json` file to make this cert has 100 year expiration time.
+* Follow this steps: https://learn.hashicorp.com/tutorials/nomad/security-enable-tls. Certificate example (Do not use it) on `nomadtls` directory. See my `cfssl.json` file to make this cert has 100 year expiration time.
+
+* If you want to use the UI, you need to set `verify_https_client` to `false`. and access the website through https protocol, ignore the security warning.
 
 # Notes
 

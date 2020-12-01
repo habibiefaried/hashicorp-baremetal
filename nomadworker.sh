@@ -1,5 +1,5 @@
 #!/bin/bash
-NOMAD_VERSION=0.12.9
+NOMAD_VERSION=1.0.0-beta3
 CONSUL_VERSION=1.9.0
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"

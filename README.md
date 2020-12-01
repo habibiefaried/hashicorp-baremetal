@@ -33,4 +33,4 @@ Hashicorp stack on baremetal deployment
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
 
 # Conclusion
-This setup really works well in Ubuntu 20.04, with openvpn above the cluster
+This setup really works well in Ubuntu 20.04, with openvpn above the cluster. EDITED: this is not true, same bug as we encountered in debian

@@ -6,7 +6,7 @@ Hashicorp stack on baremetal deployment
 
 * 3 VPS S SSD servers on contabo.com (public IP only)
 * Usage:
-  *	161.97.158.37 with 10.8.0.1, for consul server
+  *	161.97.158.37 with 10.8.0.1, for consul server with openvpn
   *	161.97.158.38 with 10.8.0.2, for nomad server, with consul client
   * 161.97.158.40 with 10.8.0.3, for nomad client, with consul client
   

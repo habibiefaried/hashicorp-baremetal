@@ -46,7 +46,7 @@ mkdir -p /etc/consul/config
 chmod a+w /etc/consul/config
 HOSTNAME=`hostname`
 cat > /etc/nomad/config/worker.hcl <<EOF
-bind_addr = "$LOCAL_IP"
+bind_addr = "0.0.0.0"
 log_level = "DEBUG"
 data_dir = "/etc/nomad"
 name = "$HOSTNAME"

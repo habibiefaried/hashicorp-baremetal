@@ -29,10 +29,8 @@ Hashicorp stack on baremetal deployment
 
 # Nomad TLS
 
-Follow this steps: https://learn.hashicorp.com/tutorials/nomad/security-enable-tls. Certificate example (Do not use it) on `nomadtls` directory
+Follow this steps: https://learn.hashicorp.com/tutorials/nomad/security-enable-tls. Certificate example (Do not use it) on `nomadtls` directory. See my `cfssl.json` file to make this cert has 100 year expiration time.
 
 # Notes
 
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
-* Generate key for nomad and consul: `openssl rand -base64 32`. On this script, change every key on `encrypt` section of config
-* WARNING: Cannot run job when `encrypt` is set

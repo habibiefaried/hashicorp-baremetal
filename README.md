@@ -17,6 +17,8 @@ Hashicorp stack on baremetal deployment
 * List all members: `consul members`
 * List all services (on server): `consul catalog services`
 * List all nomad servers: `nomad server members`
+* Consul raft: `consul operator raft list-peers`
+* Nomad raft: `nomad operator raft list-peers`
 
 # Notes
 

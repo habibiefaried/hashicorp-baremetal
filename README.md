@@ -6,9 +6,10 @@ Hashicorp stack on baremetal deployment
 
 * 3 VPS S SSD servers on contabo.com (public IP only)
 * Usage:
-  * 161.97.158.40, for nomad client, with consul client
-  *	161.97.158.38, for nomad server, with consul client
   *	161.97.158.37, for consul server
+  *	161.97.158.38, for nomad server, with consul client
+  * 161.97.158.40, for nomad client, with consul client
+  
 * OS: Debian 10
 
 # HashiCorp Commands
@@ -20,4 +21,4 @@ Hashicorp stack on baremetal deployment
 # Notes
 
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.
-* Generate key for nomad and consul: `openssl rand -base64 32`
+* Generate key for nomad and consul: `openssl rand -base64 32`. On this script, change every key on `encrypt` section of config

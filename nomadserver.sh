@@ -42,7 +42,7 @@ name = "$HOSTNAME"
 server {
   enabled = true
   bootstrap_expect = 1
-  encrypt = cAHKGeNe8gg7ZsGoVmipacM7LS0gsoCcbvrXqY9ynhI=
+  encrypt = "cAHKGeNe8gg7ZsGoVmipacM7LS0gsoCcbvrXqY9ynhI="
 }
 advertise {
   http = "$LOCAL_IP"

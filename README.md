@@ -27,6 +27,10 @@ Hashicorp stack on baremetal deployment
 * Consul raft: `consul operator raft list-peers`
 * Nomad raft: `nomad operator raft list-peers`
 
+# Nomad TLS
+
+Follow this steps: https://learn.hashicorp.com/tutorials/nomad/security-enable-tls. Certificate example (Do not use it) on `nomadtls` directory
+
 # Notes
 
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.

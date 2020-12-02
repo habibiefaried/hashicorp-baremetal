@@ -26,6 +26,12 @@ Hashicorp stack on baremetal deployment
 
 * If you want to use the UI, you need to set `verify_https_client` to `false`. and access the website through https protocol, ignore the security warning.
 
+# Consul TLS
+
+* Reference: https://learn.hashicorp.com/tutorials/consul/tls-encryption-secure
+
+* add `-days` option to set the expiration time. mine is set to `-days=36500` alias 10 years. Example: `consul tls ca create -days=36500`, `consul tls cert create -days=36500 -server`.
+
 # Notes
 
 * Those are *real* my public IP, only temporary. It's being used for testbeds and experiments.

@@ -56,6 +56,9 @@ client {
     "driver.raw_exec.enable" = "1"
     "docker.privileged.enabled" = "true"
   }
+  reserved {
+    reserved_ports = "22,8500-8600,`cat /proc/sys/net/ipv4/ip_local_port_range | cut -f1`-`cat /proc/sys/net/ipv4/ip_local_port_range | cut -f2`"
+  }
 }
 advertise {
   http = "$LOCAL_IP"

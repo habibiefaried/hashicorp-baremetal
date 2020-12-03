@@ -57,7 +57,7 @@ client {
     "docker.privileged.enabled" = "true"
   }
   reserved {
-    reserved_ports = "22,8500-8600,`cat /proc/sys/net/ipv4/ip_local_port_range | cut -f1`-`cat /proc/sys/net/ipv4/ip_local_port_range | cut -f2`"
+    reserved_ports = "22,53,68,111,8301,8500,8600,`cat /proc/sys/net/ipv4/ip_local_port_range | cut -f1`-`cat /proc/sys/net/ipv4/ip_local_port_range | cut -f2`"
   }
 }
 advertise {

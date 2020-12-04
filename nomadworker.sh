@@ -91,17 +91,6 @@ WantedBy=multi-user.target
 EOF
 systemctl enable nomad
 systemctl start nomad
-echo "Installing Dnsmasq..."
-apt install dnsmasq -y
-echo "Configuring Dnsmasq..."
-echo "server=/consul/$LOCAL_IP#8600" >> /etc/dnsmasq.d/consul
-echo "server=8.8.8.8" >> /etc/dnsmasq.d/consul
-echo "listen-address=0.0.0.0" >> /etc/dnsmasq.d/consul
-echo "bind-interfaces" >> /etc/dnsmasq.d/consul
-echo "conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig" > /etc/dnsmasq.conf
-echo "Restarting dnsmasq..."
-systemctl enable dnsmasq
-service dnsmasq restart
 cat > /etc/consul/config/client.json <<EOF
 {
   "server": false,
@@ -118,6 +107,13 @@ connect {
 }
 ports {
   grpc = 8502
+}
+EOF
+cat > /etc/consul/config/ports.json <<EOF
+{
+  "ports": {
+    "dns": 53
+  }
 }
 EOF
 cat > /etc/systemd/system/consul.service <<EOF

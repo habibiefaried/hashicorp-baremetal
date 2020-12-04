@@ -84,7 +84,9 @@ StandardOutput=append:/var/log/nomad.log
 StandardError=append:/var/log/nomad.err
 ExecStart=/usr/bin/nomad agent -config=/etc/nomad/config
 ExecReload=/bin/kill -HUP $MAINPID
-KillSignal=SIGTERM
+KillSignal=SIGINT
+LimitNOFILE=infinity
+LimitNPROC=infinity
 
 [Install]
 WantedBy=multi-user.target
@@ -128,7 +130,9 @@ StandardOutput=append:/var/log/consul.log
 StandardError=append:/var/log/consul.err
 ExecStart=/usr/bin/consul agent -config-dir=/etc/consul/config
 ExecReload=/bin/kill -HUP $MAINPID
-KillSignal=SIGTERM
+KillSignal=SIGINT
+LimitNOFILE=infinity
+LimitNPROC=infinity
 RestartSec=30
 StartLimitBurst=5
 

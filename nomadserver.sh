@@ -76,7 +76,7 @@ Restart=on-failure
 StandardOutput=append:/var/log/nomad.log
 StandardError=append:/var/log/nomad.err
 ExecStart=/usr/bin/nomad agent -config=/etc/nomad/config
-ExecReload=/bin/kill -HUP $MAINPID
+ExecReload=/bin/kill -HUP \$MAINPID
 KillSignal=SIGINT
 LimitNOFILE=infinity
 LimitNPROC=infinity

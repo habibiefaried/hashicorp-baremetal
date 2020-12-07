@@ -7,6 +7,12 @@ job "demo-webapp2" {
     }
 
     task "server" {
+      # template {
+      #  data          = file(".env")
+      #  destination   = ".env"
+      #  env           = true
+      # }
+
       driver = "docker"
       config {
         image = "mendhak/http-https-echo"

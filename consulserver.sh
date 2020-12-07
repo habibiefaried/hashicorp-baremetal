@@ -58,7 +58,7 @@ Restart=on-failure
 StandardOutput=append:/var/log/consul.log
 StandardError=append:/var/log/consul.err
 ExecStart=/usr/bin/consul agent -config-dir=/etc/consul/config
-ExecReload=/bin/kill -HUP $MAINPID
+ExecReload=/bin/kill -HUP \$MAINPID
 KillSignal=SIGINT
 LimitNOFILE=infinity
 LimitNPROC=infinity

@@ -19,8 +19,8 @@ apt update && apt install curl unzip -y
 echo "Installing docker..."
 apt update
 apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
-curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt update
 apt install docker-ce docker-ce-cli containerd.io -y
 systemctl enable docker
@@ -52,6 +52,7 @@ name = "$HOSTNAME"
 client {
   enabled = true
   "options" = {
+    "docker.auth.config" = "/root/.docker/config.json"
     "driver.raw_exec.enable" = "1"
     "docker.privileged.enabled" = "true"
   }
@@ -113,7 +114,7 @@ EOF
 cat > /etc/consul/config/ports.json <<EOF
 {
   "ports": {
-    "dns": 53
+    "dns": 8600
   }
 }
 EOF

@@ -107,7 +107,7 @@ EOF
 cat > /etc/consul/config/ports.json <<EOF
 {
   "ports": {
-    "dns": 53
+    "dns": 8600
   }
 }
 EOF
